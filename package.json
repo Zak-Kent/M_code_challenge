@@ -1,0 +1,16 @@
+{
+  "name": "marketocode",
+  "version": "1.0.0",
+  "description": "Marketo code challenge",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha --reporter spec",
+    "dedupe": "./index.js"
+  },
+  "author": "Zachary Kent",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.1.2",
+    "winston": "^2.3.0"
+  }
+}
