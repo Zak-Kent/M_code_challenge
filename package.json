@@ -4,7 +4,7 @@
   "description": "Marketo code challenge",
   "scripts": {
     "test": "./node_modules/.bin/mocha --reporter spec",
-    "dedupe": "./index.js"
+    "dedup": "./index.js"
   },
   "author": "Zachary Kent",
   "license": "ISC",

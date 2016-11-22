@@ -19,8 +19,8 @@ exports.checkOrderOfDates = function (jsonObj) {
 };
 
 exports.orderedSolution = function (jsonObj, winston) {
-    // step backwards through array, if _id or email not yet in dupeArray, 
-    // store record's idx in finalArray, and keep track of new _id & email in dupeArray
+    // step backwards through array, if _id or email not yet in dupArray, 
+    // store record's idx in finalArray, and keep track of new _id & email in dupArray
     // return finalArray when done 
 
     // need to use slice to make sure you're not modifying original array in func 
@@ -31,8 +31,8 @@ exports.orderedSolution = function (jsonObj, winston) {
     var origIdxNum = reverseArray.length - 1;
 
     var finalArray = [];
-    var dupeIdxs = [];
-    var dupeArray = [];
+    var dupIdxs = [];
+    var dupArray = [];
 
     for (var i = 0; i < reverseArray.length; i++) {
 
@@ -40,15 +40,15 @@ exports.orderedSolution = function (jsonObj, winston) {
         var email = reverseArray[i]["email"]; 
 
         // if _id or email is already in an object being kept move on  
-        if (dupeArray.indexOf(_id) >= 0 || dupeArray.indexOf(email) >= 0) {
+        if (dupArray.indexOf(_id) >= 0 || dupArray.indexOf(email) >= 0) {
             // winston.log('info', 'duplicate record found at this index', { index: origIdxNum - i });
-            dupeIdxs.push(origIdxNum - i);
+            dupIdxs.push(origIdxNum - i);
         } else {
-            Array.prototype.push.apply(dupeArray, [_id, email]);
+            Array.prototype.push.apply(dupArray, [_id, email]);
             finalArray.push(origIdxNum - i);
         }
     }
 
-    return [finalArray.reverse(), dupeIdxs.reverse()]
+    return [finalArray.reverse(), dupIdxs.reverse()]
 };
  

@@ -3,7 +3,7 @@
 var fs = require("fs");
 
 exports.writeJson = function(arrayIdxs, originalJson) {
-    // rebuild a json object matching the original format without dupes 
+    // rebuild a json object matching the original format without dups 
 
     var outputJson = {"leads": []};
 

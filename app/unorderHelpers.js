@@ -69,10 +69,10 @@ exports.idxDateSort = function (dateObj) {
 exports.dedupedArray = function (sortedIdxMap, idxObj) {
     // use output from funcs idxDateSort and mapIdxToKeys[0] as args
     // loop through each date and idx value array from the idxDateSort Map 
-    // sort out dupes by using dupeArray index check, keep records only if they're not a dupe     
+    // sort out dups by using dupArray index check, keep records only if they're not a dup     
 
-    var dupeIdxs = [];
-    var dupeArray = [];
+    var dupIdxs = [];
+    var dupArray = [];
     var finalArray = [];
 
     for (var [key, valueArray] of sortedIdxMap.entries()) {
@@ -83,20 +83,20 @@ exports.dedupedArray = function (sortedIdxMap, idxObj) {
             var _id = idxObj[itemIdx]._id;
             var email = idxObj[itemIdx].email;
 
-            // if _id or email is a dupe move on   
-            if (dupeArray.indexOf(_id) >= 0 || dupeArray.indexOf(email) >= 0) {
-                dupeIdxs.push(itemIdx);
+            // if _id or email is a dup move on   
+            if (dupArray.indexOf(_id) >= 0 || dupArray.indexOf(email) >= 0) {
+                dupIdxs.push(itemIdx);
                 // winston.log('info', 'duplicate record found at this index', { index: origIdxNum - i });
                 
             } else {
-                // if record not a dupe push idx of record into finalArray, & keep track of _id, email  
-                Array.prototype.push.apply(dupeArray, [_id, email]);
+                // if record not a dup push idx of record into finalArray, & keep track of _id, email  
+                Array.prototype.push.apply(dupArray, [_id, email]);
                 finalArray.push(itemIdx);
             }
         }
     }
     // reverse final array to match the output of ordered output 
-    return [finalArray.reverse(), dupeIdxs.reverse()]
+    return [finalArray.reverse(), dupIdxs.reverse()]
 };
 
 

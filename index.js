@@ -40,13 +40,13 @@ var solutionLogic = function() {
         var finalIdxArray = unorderHelpers.dedupedArray(idxDateSortOutput, mapIdxToKeysOutput[0]);
     }
 
-    // finalIdxArray has an array of [[nonDupeIdxs], [dupeIdxs]] as returned value 
+    // finalIdxArray has an array of [[nonDupIdxs], [dupIdxs]] as returned value 
 
     // create final JSON object and write to './finalOutput.json'
     var finalJson = writeHelpers.writeJson(finalIdxArray[0], myJSONObj);
 
 
-    // log array's of indexes dupes vs. nondupes and final output JSON 
+    // log array's of indexes dups vs. nondups and final output JSON 
     winston.log('info', "indexes of records found to be duplicates", 
                 { DuplicateIdxArray: finalIdxArray[1] });
 
