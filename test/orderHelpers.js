@@ -3,11 +3,11 @@
 var expect    = require("chai").expect;
 var orderHelpers = require("../app/orderHelpers");
 
-var myJSONObj = require('../json_files/leads.json');
+var myJsonObj = require('../json_files/leads.json');
 var unorderedJsonObj = require('../json_files/unorderTest.json');
 
 describe("orderHelpers.orderedSolution function", function() {
-    var funcOut = orderHelpers.orderedSolution(myJSONObj);
+    var funcOut = orderHelpers.orderedSolution(myJsonObj);
     
 
     it("should return an array of index values in correct order", function() {
@@ -16,7 +16,7 @@ describe("orderHelpers.orderedSolution function", function() {
 });
 
 describe("orderHelpers.checkOrderOfDates function", function() {
-    var funcOutOrdered = orderHelpers.checkOrderOfDates(myJSONObj);
+    var funcOutOrdered = orderHelpers.checkOrderOfDates(myJsonObj);
     var funcOutUnOrdered = orderHelpers.checkOrderOfDates(unorderedJsonObj);
 
     it("should return true when json object has ordered dates", function() {

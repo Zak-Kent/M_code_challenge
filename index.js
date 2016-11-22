@@ -16,22 +16,22 @@ var solutionLogic = function() {
 
     // grab json object so you can access it, if filePath provided fails notify user 
     try {
-        var myJSONObj = require(jsonFile);    
+        var myJsonObj = require(jsonFile);    
     }
     catch (err) {
         console.log("file path entered was invalid");
     }
 
     // check to see if data in json is ordered by date, needed to decide which solution to use
-    var isJsonOrdered = orderHelpers.checkOrderOfDates(myJSONObj);
+    var isJsonOrdered = orderHelpers.checkOrderOfDates(myJsonObj);
  
     if (isJsonOrdered) {
-        var finalIdxArray = orderHelpers.orderedSolution(myJSONObj);
+        var finalIdxArray = orderHelpers.orderedSolution(myJsonObj);
 
     // if json input found to be un-ordered by entryDate use more complicated solution 
     } else {
         // func returns object with idxs mapped as keys to OG objects + other object with idx mapped to datetime 
-        var mapIdxToKeysOutput = unorderHelpers.mapIdxToKeys(myJSONObj); 
+        var mapIdxToKeysOutput = unorderHelpers.mapIdxToKeys(myJsonObj); 
 
         // returns search order object with {datetime key: array of ordered idxs that share date}
         var idxDateSortOutput = unorderHelpers.idxDateSort(mapIdxToKeysOutput[1]);
@@ -43,7 +43,7 @@ var solutionLogic = function() {
     // finalIdxArray has an array of [[nonDupIdxs], [dupIdxs]] as returned value 
 
     // create final JSON object and write to './finalOutput.json'
-    var finalJson = writeHelpers.writeJson(finalIdxArray[0], myJSONObj);
+    var finalJson = writeHelpers.writeJson(finalIdxArray[0], myJsonObj);
 
 
     // log array's of indexes dups vs. nondups and final output JSON 
@@ -54,7 +54,7 @@ var solutionLogic = function() {
                 { nonDuplicateIdxArray: finalIdxArray[0] });
 
     winston.log('info', "Final JSON object ouput without duplicates",
-                { finalJSONObj: finalJson });
+                { finalJsonObj: finalJson });
 
 };
 

@@ -3,12 +3,12 @@
 var expect    = require("chai").expect;
 var unorderHelpers = require("../app/unorderHelpers");
 
-var myJSONObj = require('../json_files/leads.json');
+var myJsonObj = require('../json_files/leads.json');
 var unorderedJsonObj = require('../json_files/unorderTest.json');
 
 describe("unorderHelpers.mapIdxToKeys function", function(){
     // define variables that can be used across tests
-    var funcOut = unorderHelpers.mapIdxToKeys(myJSONObj);
+    var funcOut = unorderHelpers.mapIdxToKeys(myJsonObj);
     
     it("should return two objects", function() {
         expect(funcOut.length).to.equal(2);
@@ -18,18 +18,18 @@ describe("unorderHelpers.mapIdxToKeys function", function(){
         var lengthA = Object.keys(funcOut[0]).length;
         var lengthB = Object.keys(funcOut[1]).length;
         expect(lengthA).to.equal(lengthB);
-        expect(lengthA).to.equal(myJSONObj.leads.length);
+        expect(lengthA).to.equal(myJsonObj.leads.length);
     });
 
     it("should index objects correctly", function(){
         var fifthObjFunc = funcOut[0][5];
-        var fifthObjOrg = myJSONObj.leads[5];
+        var fifthObjOrg = myJsonObj.leads[5];
         expect(fifthObjOrg).to.equal(fifthObjFunc);
     });
 });
 
 describe("unorderHelpers.idxDateSort function", function(){
-    var mapIdxToKeysOutput = unorderHelpers.mapIdxToKeys(myJSONObj);
+    var mapIdxToKeysOutput = unorderHelpers.mapIdxToKeys(myJsonObj);
 
     // grab the second element from output of mapIdxToKeys func and feed it to idxDateSort
     var funcOut = unorderHelpers.idxDateSort(mapIdxToKeysOutput[1]);
@@ -90,7 +90,7 @@ describe("unorderHelpers.idxDateSort function with unordered input", function(){
 describe("unorderHelpers.dedupedArray function", function(){
     // mapIdxToKeysOutput[0] = mapped object where index of each item in json is the key and orginal object is value  
     // mapIdxToKeysOutput[1] = object where, key: value === datetime: object index
-    var mapIdxToKeysOutput = unorderHelpers.mapIdxToKeys(myJSONObj);
+    var mapIdxToKeysOutput = unorderHelpers.mapIdxToKeys(myJsonObj);
 
     // need to pass values recived from previous function down to line to get input for dedupedArray
     var idxDateSortOutput = unorderHelpers.idxDateSort(mapIdxToKeysOutput[1]);

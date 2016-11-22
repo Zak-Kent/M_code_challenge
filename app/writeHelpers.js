@@ -3,7 +3,7 @@
 var fs = require("fs");
 
 exports.writeJson = function(arrayIdxs, originalJson) {
-    // rebuild a json object matching the original format without dups 
+    // rebuild a JSON object matching the original format without dups 
 
     var outputJson = {"leads": []};
 
@@ -14,7 +14,7 @@ exports.writeJson = function(arrayIdxs, originalJson) {
         outputJson["leads"].push(jsonRecord);
     }
 
-    // write output to json file, need JSON.stringify because fs needs string or buffer in data param 
+    // write output to JSON file, need JSON.stringify because fs needs string or buffer in data param 
     fs.writeFileSync('./deduped.json', JSON.stringify(outputJson, null, 2), 'utf-8');
 
     return outputJson

@@ -1,15 +1,15 @@
 "use strict";
 
-// helper funcs used to check for order in JSON input 
-// and to solve input if ordered by entryDate property in JSON
+/* helper funcs used to check for order in JSON input 
+and to solve input if ordered by entryDate property in JSON */
 
 exports.checkOrderOfDates = function (jsonObj) {
-    // return true if objects in json input are in chronological order by entryDate property
+    // return true if objects in JSON input are in chronological order by entryDate property
     
     var jsonArray = jsonObj.leads;
 
     for (var i = 0; i < jsonArray.length; i++) {
-        // if you hit last element and havent failed yet order is good 
+        // if you hit last element and haven't failed yet order is good 
         if (i === jsonArray.length - 1) {
             return true
         } else if (Date.parse(jsonArray[i]["entryDate"]) > Date.parse(jsonArray[i + 1]["entryDate"])) {
@@ -19,9 +19,9 @@ exports.checkOrderOfDates = function (jsonObj) {
 };
 
 exports.orderedSolution = function (jsonObj, winston) {
-    // step backwards through array, if _id or email not yet in dupArray, 
-    // store record's idx in finalArray, and keep track of new _id & email in dupArray
-    // return finalArray when done 
+    /* step backwards through array, if _id or email not yet in dupArray, 
+    store record's idx in finalArray, and keep track of new _id & email in dupArray,
+    return finalArray when done */
 
     // need to use slice to make sure you're not modifying original array in func 
     var jsonCopy = jsonObj.leads.slice();
@@ -41,7 +41,6 @@ exports.orderedSolution = function (jsonObj, winston) {
 
         // if _id or email is already in an object being kept move on  
         if (dupArray.indexOf(_id) >= 0 || dupArray.indexOf(email) >= 0) {
-            // winston.log('info', 'duplicate record found at this index', { index: origIdxNum - i });
             dupIdxs.push(origIdxNum - i);
         } else {
             Array.prototype.push.apply(dupArray, [_id, email]);
